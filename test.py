@@ -1,16 +1,37 @@
+import tkinter as tk
 import qrcode
 from PIL import ImageTk
-import tkinter as tk
 
-# Criar a janela
-janela = tk.Tk()
-janela.geometry('800x800')
 
-urlEntry = tk.Entry(janela, width=20, justify='left', relief='solid', borderwidth=1)
-urlEntry.place(x=150, y=67)
 
-qr_button = tk.Button(janela, text='Gerar Qr Code', width=13, height=1, anchor='center', font=('Ivy 10 bold'), relief='raised', overrelief='sunken', bg='gray', fg='white', borderwidth=2)
-qr_button.place(x=280, y=61)
 
-# Executar a janela
-janela.mainloop()
+# Criar a janela principal
+root = tk.Tk()
+root.geometry('400x400')
+
+# Criar a Entry para inserir a URL
+entry = tk.Entry(root)
+entry.pack()
+
+def gerar_qrcode():
+    # Obter a URL da Entry
+    url = entry.get()
+
+    # Gerar o QR Code
+    qr = qrcode.make(url)
+
+    # Converter o QR Code em um objeto PhotoImage
+    qr_image = ImageTk.PhotoImage(qr)
+    # Exibir o QR Code na Label
+    label = tk.Label(root, image=qr_image, width=330, height=330, compound='center', anchor='center', bg='white', relief='flat')
+    label.place(x=10, y=190)
+    label.image = qr_image
+
+# Criar o botão para gerar o QR Code
+button = tk.Button(root, text="Gerar QR Code", command=gerar_qrcode)
+button.pack()
+
+# Criar a Label para exibir o QR Code
+
+
+root.mainloop()

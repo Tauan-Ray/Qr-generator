@@ -9,7 +9,7 @@ button = '#353535'
 
 app = Tk()
 app.title('Gerador de Qr Code')
-app.geometry('400x400')
+app.geometry('400x480')
 app.config(bg=background)
 
 # Fazendo cabeçalho
@@ -28,11 +28,15 @@ urlEntry.place(x=150, y=67)
 
 # Criando função que gera Qr Code
 def generator():
+    # Pegando url e criando imagem Qr Code
     url = urlEntry.get()
+    qr = qrcode.make(url)
+    imageQr = ImageTk.PhotoImage(qr)
 
-
-    imgQr_Code = Label(app, width=80, height=80, compound='center', anchor='center', bg=background, relief='flat')
-    imgQr_Code.place(x=10, y=190)
+    # Fazendo label que mostra Qr Code
+    imgQr_Code = Label(app, image=imageQr ,width=320, height=320, compound='center', anchor='center', bg=background, relief='flat')
+    imgQr_Code.place(x=18, y=110)
+    imgQr_Code.image = imageQr
 
 
 
