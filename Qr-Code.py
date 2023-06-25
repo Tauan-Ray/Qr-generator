@@ -33,8 +33,6 @@ urlEntry = Entry(app, width=20, justify='left', relief='solid', borderwidth=1)
 urlEntry.place(x=150, y=67)
 
 # Criando função que gera Qr Code
-
-
 def generator():
     # Pegando url e criando imagem Qr Code
     url = urlEntry.get()
@@ -47,6 +45,7 @@ def generator():
     imgQr_Code.place(x=18, y=110)
     imgQr_Code.image = imageQr
 
+    # Função para salvar imagem
     def download():
         imgSave = asksaveasfilename()
         qr.save(imgSave + '.png')
@@ -54,10 +53,20 @@ def generator():
         messagebox.showinfo('Sucesso!!!!',
                             'Sua imagem foi baixada com sucesso.')
 
+    # Função para resetar app   
+    def reset():
+        urlEntry.delete(0, END)
+        imgQr_Code.destroy()
+        download_button.destroy()
+        reset_button.destroy()
+
     download_button = Button(app, command=download, text='Clique aqui para download', width=21, height=1, anchor='center', font=(
         'Arial 10 bold'), relief='raised', overrelief='sunken', bg=Colorbutton, fg=Fontbutton, borderwidth=2)
     download_button.place(x=30, y=440)
 
+    reset_button = Button(app, command=reset ,text='Reset', width=10, height=1, anchor='center', font=(
+        'Arial 10 bold'), relief='raised', overrelief='sunken', bg=Colorbutton, fg=Fontbutton, borderwidth=2)
+    reset_button.place(x=220, y=440)
 
 # Criando botão para fazer qr code
 qr_button = Button(app, command=generator, text='Gerar Qr Code', width=13, height=1, anchor='center', font=(
