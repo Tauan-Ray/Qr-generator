@@ -49,10 +49,15 @@ def generator():
 
     def download():
         imgSave = asksaveasfilename()
-        qr.save(imgSave + '.png')
 
-        messagebox.showinfo('Sucesso!!!!',
-                            'Sua imagem foi baixada com sucesso.')
+        if imgSave == '':
+            pass
+
+        else:
+            qr.save(imgSave + '.png')
+
+            messagebox.showinfo('Sucesso!!!!',
+                                'Sua imagem foi baixada com sucesso.')
 
     download_button = Button(app, command=download, text='Clique aqui para download', width=21, height=1, anchor='center', font=(
         'Arial 10 bold'), relief='raised', overrelief='sunken', bg=Colorbutton, fg=Fontbutton, borderwidth=2)
