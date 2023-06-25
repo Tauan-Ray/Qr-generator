@@ -48,10 +48,15 @@ def generator():
     # Função para salvar imagem
     def download():
         imgSave = asksaveasfilename()
-        qr.save(imgSave + '.png')
 
-        messagebox.showinfo('Sucesso!!!!',
-                            'Sua imagem foi baixada com sucesso.')
+        if imgSave == '':
+            pass
+
+        else:
+            qr.save(imgSave + '.png')
+
+            messagebox.showinfo('Sucesso!!!!',
+                                'Sua imagem foi baixada com sucesso.')
 
     # Função para resetar app   
     def reset():
